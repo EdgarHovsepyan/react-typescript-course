@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
+import TodoPage from './TodoPage';
+import UserPage from './components/UserPage';
+import UserItemPage from './components/UserItemPage';
+import { TodoItemPage } from './components/TodoItemPage';
 
 function App() {
+ 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <EventsExample />
+      <Card 
+        variant={CardVariant.outlined}
+        onClick={(num: number) => console.log(num)}
+        width='200px'
+        height='200px'
+      >
+        <button>Tap</button>
+      </Card> */}
+
+      <Router>
+        <div>
+          <NavLink to='/users'>Users</NavLink>
+          <NavLink to='/todos'>Todos</NavLink>
+        </div>
+          <Routes>
+            <Route path={"/users"} element={<UserPage />} />
+            <Route path={"/todos"} element={<TodoPage />} />
+            <Route path={"/users/:id"} element={<UserItemPage />} />
+            <Route path={"/todos/:id"} element={<TodoItemPage />} />
+          </Routes>
+      </Router>
+      
     </div>
   );
 }
